@@ -9,6 +9,15 @@ class UsuariosController {
       throw error;
     }
   }
+
+//Agregar datos - Verónica Parra
+  async agregarUsuario(nombre, email, resena) {
+    try {
+      return await UsuariosDB.agregarUsuario(nombre, email, resena);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = new UsuariosController();

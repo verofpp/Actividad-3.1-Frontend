@@ -12,6 +12,19 @@ class UsuariosDB {
       });
     });
   }
+
+//Agregar datos de la tabla  - Verónica Parra
+  async agregarUsuario(nombre, email, resena) {
+    return new Promise((resolve, reject) => {
+      const query = 'INSERT INTO `usuarios` (Nombre, Email, Reseña) VALUES (?, ?, ?)';
+      conexion.query(query, [nombre, email, resena], function (error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+        resolve(results);
+      });
+    });
+  }
 }
 
 module.exports = new UsuariosDB();

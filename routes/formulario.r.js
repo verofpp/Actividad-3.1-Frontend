@@ -11,3 +11,17 @@ router.get('/', async function(req, res, next) {
     res.status(500).send(error);
   }
 });
+
+//Agregar datos del formulario
+router.post('/agregar', async function(req, res, next) {
+  const { nombre, email, resena } = req.body;
+
+  try {
+    await usuariosController.agregarUsuario(nombre, email, resena);
+    res.redirect('/formulario'); // Redirige a la página de usuarios después de agregar
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+module.exports = router;

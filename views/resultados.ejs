@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Vista de Resultados a las búsquedas - Verónica Parra -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Måneskin</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <header>
+        <h1>Måneskin</h1>
+        <div id="nav">
+            <nav>
+                <ul>
+                    <li><a href="http://localhost:3000/">Inicio</a></li>
+                    <li><a href="http://localhost:3000/integrantes/">Integrantes</a></li>
+                    <li><a href="http://localhost:3000/historia/">Historia</a></li>
+                    <li><a href="http://localhost:3000/discografia/">Discografía</a></li>
+                    <li><a href="http://localhost:3000/formulario/">Suscríbete</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contenedor">
+        <section id="discografia">
+            <h2>Discografía</h2>
+
+            <div class="busqueda">
+              <input type="text" id="searchInput" placeholder="Buscar">
+              <button type="submit" id="searchButton">
+                <img src="https://cdn.icon-icons.com/icons2/2066/PNG/512/search_icon_125165.png" alt="">
+              </button>
+            </div>
+            
+            <script>
+              document.getElementById('searchButton').addEventListener('click', function() {
+                const query = document.getElementById('searchInput').value;
+                if (query) {
+                  window.location.href = `http://localhost:3000/discografia/buscar/${encodeURIComponent(query)}`;
+                }
+              });
+            
+              // Permite al usuario presionar "Enter" para buscar
+              document.getElementById('searchInput').addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                  document.getElementById('searchButton').click();
+                }
+              });
+            </script>
+
+            <article>
+              <h3>Resultados de búsqueda:</h3>
+              <ol>
+                <% resultado.forEach(item => { %>
+                  <li><%= item.Nombre %> (<%= item.Año %>)</li>
+                <% }) %>
+              </ol>
+            </article>
+        </section>
+
+        <aside>
+            <h3>Datos Interesantes</h3>
+            <p>Måneskin significa "luz de luna" en danés, en honor a las raíces danesas de Victoria.</p>
+
+            <div>
+                <h3>Escuchar</h3>
+                <p>Puedes escuchar su música en las siguientes plataformas:</p>
+                <div style="text-align: center;" class="escuchar">
+                    <a href="https://open.spotify.com/intl-es/artist/0lAWpj5szCSwM4rUMHYmrr" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Spotify">
+                    </a>
+                    <a href="https://music.apple.com/us/artist/m%C3%A5neskin/1312874741" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Apple_Music_icon.svg/1200px-Apple_Music_icon.svg.png" alt="Apple Music">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCgQna2EqpzqzfBjlSmzT72w" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube">
+                    </a>
+                    <a href="https://maneskin.com/" target="_blank">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCalfAz21K4XmKuoN0O_3HUAuFlkapbQziNmeoyDcMKw&s" alt="Página Oficial">
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <footer>
+        <p>Verónica Parra 30.600.365<br>Cristhofer Solarte 30.959.561<br>&copy; 2024 Frontend.</p>
+    </footer>
+
+</body>
+</html>

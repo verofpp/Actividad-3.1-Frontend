@@ -28,6 +28,34 @@ class CancionesNotablesDB {
   }
 }
 
+//Modelo Tabla EP
+
+//Consulta para obtener todos los datos de la tabla - Cristhofer Solarte
+class EpDB {
+  obtenerEp() {
+    return new Promise((resolve, reject) => {
+      conexion.query('SELECT * from `ep`', function (error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+        resolve(results);
+      });
+    });
+  }
+
+//Consulta para obtener datos solo según el nombre - Cristhofer Solarte
+  buscarPorNombre(nombre) {
+    return new Promise((resolve, reject) => {
+      conexion.query('SELECT * FROM `ep` WHERE Nombre LIKE ?', [nombre + '%'], function (error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+        resolve(results);
+      });
+    });
+  }
+}
+
 //Modelo Tabla Sencillos
 
 //Consulta para obtener todos los datos de la tabla - Verónica Parra
@@ -56,7 +84,37 @@ class SencillosDB {
   }
 }
 
+//Modelo Tabla Álbumes
+
+//Consulta para obtener todos los datos de la tabla - Cristhofer Solarte
+class AlbumesDB {
+  obtenerAlbumes() {
+    return new Promise((resolve, reject) => {
+      conexion.query('SELECT * from `albumes`', function (error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+        resolve(results);
+      });
+    });
+  }
+
+  //Consulta para obtener datos según el nombre - Cristhofer Solarte
+  buscarPorNombre(nombre) {
+    return new Promise((resolve, reject) => {
+      conexion.query('SELECT * FROM `albumes` WHERE Nombre LIKE ?', [nombre + '%'], function (error, results, fields) {
+        if (error) {
+          reject(error);
+        }
+        resolve(results);
+      });
+    });
+  }
+}
+
 module.exports = {
   CancionesNotablesDB,
-  SencillosDB
+  EpDB,
+  SencillosDB,
+  AlbumesDB
 };
